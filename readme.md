@@ -16,6 +16,8 @@ script will check if there are values at the destination path and will NOT overw
 - fix duplicate key names overwrite in secrets dict
 - enforce requiring  ```-t```
 - add checking against https certificates.
+- add option to skip writing policies.
+- add option to force overwrite secrets.
 
 ### more
 - PRs are welcome!.
