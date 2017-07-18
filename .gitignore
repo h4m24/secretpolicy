@@ -1,4 +1,5 @@
 *.pyc
 *.idea
+*.hcl
 /config.json
 /secrets.json
