@@ -1,4 +1,4 @@
 *.pyc
 *.idea
-config.json
-secrets.json
+/config.json
+/secrets.json
