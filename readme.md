@@ -14,7 +14,7 @@ the script will spit out a file as an hcl policy read from vault after writing t
 ### to do
 - fix duplicate key names overwrite in secrets dict
 - enforce requiring  ```-t```
-- add https support.
+- add checking against https certificates.
 
 ### more
 - PRs are welcome!.
