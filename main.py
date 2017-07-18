@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/Library/Frameworks/Python.framework/Versions/3.6/bin/python3
 
 import argparse
 import sys
@@ -20,23 +20,26 @@ def main():
                         help="set topic of secret , example: service_web OR team_developers", type=str)
 
     args = parser.parse_args()
-    # print(args.target[0])
 
-    vaultconfig = readconfig(ConfigFilePath)
-    vaultaddress = vaultconfig['vaultaddress']
-    vaulttoken = vaultconfig['vaulttoken']
-    secretspathlist = []
+    if args.target:
+        vaultconfig = readconfig(ConfigFilePath)
+        vaultaddress = vaultconfig['vaultaddress']
+        vaulttoken = vaultconfig['vaulttoken']
+        secretspathlist = []
 
-    for SecretDocument in readsecrets(SecretsFilePath)['secrets']:
-        if secretexists(SecretDocument['path'], vaultaddress, vaulttoken):
-            print("Following secret path already populated with a secret, refusing to overwrite")
-            print(SecretDocument['path'])
-            sys.exit(2)
-        else:
-            for SecretEntry in SecretDocument['entries']:
-                writetovault(SecretDocument['path'], SecretEntry, vaultaddress, vaulttoken)
-            secretspathlist.append(SecretDocument['path'])
-    writepolicy(args.target, secretspathlist, vaultaddress, vaulttoken)
+        for SecretDocument in readsecrets(SecretsFilePath)['secrets']:
+            if secretexists(SecretDocument['path'], vaultaddress, vaulttoken):
+                print("Following secret path already populated with a secret, refusing to overwrite")
+                print(SecretDocument['path'])
+                sys.exit(2)
+            else:
+                for SecretEntry in SecretDocument['entries']:
+                    writetovault(SecretDocument['path'], SecretEntry, vaultaddress, vaulttoken)
+                secretspathlist.append(SecretDocument['path'])
+        writepolicy(args.target, secretspathlist, vaultaddress, vaulttoken)
+    else:
+        print("please provide secrets topic")
+        sys.exit(2)
 
 
 main()
