@@ -13,7 +13,7 @@ script will check if there are values at the destination path and will NOT overw
 
 
 ### to do
-- fix duplicate key names overwrite in secrets dict
+- check for duplicate key names in secrets dict.
 - add checking against https certificates.
 - add option to skip writing policies.
 - add option to force overwrite secrets.
