@@ -23,7 +23,7 @@ def main():
 
     args = parser.parse_args()
 
-    if args.target:
+    if args.target and args.SecretsFilePath:
         vaultconfig = readconfig(ConfigFilePath)
         vaultaddress = vaultconfig['vaultaddress']
         vaulttoken = vaultconfig['vaulttoken']
