@@ -17,6 +17,7 @@ script will check if there are values at the destination path and will NOT overw
 - add checking against https certificates.
 - add option to skip writing policies.
 - add option to force overwrite secrets.
+- add flag to write policy file or do ```STDOUT```.
 
 ### more
 - PRs are welcome!.
