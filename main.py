@@ -5,7 +5,7 @@ import sys
 from functions import *
 
 ConfigFilePath = './config.json'
-SecretsFilePath = './secrets.json'
+# SecretsFilePath = './secrets.json'
 
 
 def main():
@@ -18,6 +18,8 @@ def main():
 
     parser.add_argument('-t', nargs=1, action='store', dest='target',
                         help="set topic of secret , example: service_web OR team_developers", type=str)
+    parser.add_argument('-s', nargs=1, action='store', dest='SecretsFilePath',
+                        help="secrets.json file path", type=str)
 
     args = parser.parse_args()
 
@@ -27,7 +29,7 @@ def main():
         vaulttoken = vaultconfig['vaulttoken']
         secretspathlist = []
 
-        for SecretDocument in readsecrets(SecretsFilePath)['secrets']:
+        for SecretDocument in readsecrets(args.SecretsFilePath[0])['secrets']:
             if secretexists(SecretDocument['path'], vaultaddress, vaulttoken):
                 print("Following secret path already populated with a secret, refusing to overwrite")
                 print(SecretDocument['path'])
