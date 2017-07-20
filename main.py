@@ -48,10 +48,10 @@ def main():
                 sys.exit(2)
             else:
                 for SecretEntry in SecretDocument['entries']:
-                    pass
-                    # writetovault(SecretDocument['path'], SecretEntry, vaultaddress, vaulttoken)
+                    logging.info("writing secrets")
+                    writetovault(SecretDocument['path'], SecretEntry, vaultaddress, vaulttoken)
                 secretspathlist.append(SecretDocument['path'])
-        logging.info("writing secrets")
+        logging.info("writing policies")
         writepolicy(args.target, secretspathlist, vaultaddress, vaulttoken)
     else:
         print("please provide topic and secret file path ")
