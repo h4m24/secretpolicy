@@ -1,11 +1,5 @@
-
-
-
-
 import hvac
 import json
-
-
 
 # read configuration from json file
 
