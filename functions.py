@@ -1,5 +1,11 @@
+
+
+
+
 import hvac
 import json
+
+
 
 # read configuration from json file
 
@@ -25,7 +31,7 @@ def readsecrets(secretfilepath):
 
 def secretexists(path, vaultaddress, vaulttoken):
     # print(path, vaultaddress, vaulttoken)
-    client = hvac.Client(url=vaultaddress, token=vaulttoken)
+    client = hvac.Client(url=vaultaddress, token=vaulttoken, verify=False)
     if client.read(path)is None:
         return False
     return True
@@ -34,7 +40,7 @@ def secretexists(path, vaultaddress, vaulttoken):
 
 
 def writetovault(path,  secretdict, vaultaddress, vaulttoken):
-    client = hvac.Client(url=vaultaddress, token=vaulttoken)
+    client = hvac.Client(url=vaultaddress, token=vaulttoken, verify=False)
     client.write(path, **secretdict)
 
 
@@ -44,7 +50,7 @@ def writetovault(path,  secretdict, vaultaddress, vaulttoken):
 
 
 def writepolicy(topicname, pathslist, vaultaddress, vaulttoken):
-    client = hvac.Client(url=vaultaddress, token=vaulttoken)
+    client = hvac.Client(url=vaultaddress, token=vaulttoken, verify=False)
     outputfile = topicname[0] + ".hcl"
 
     # Create a file
