@@ -19,5 +19,16 @@ script will check if there are values at the destination path and will NOT overw
 - add option to force overwrite secrets.
 - add flag to write policy file or do ```STDOUT```.
 
+
+### Usage
+
+- ```git clone https://github.com/h4m24/secretpolicy.git ~/```
+- ``` sudo ln -s ~/secretpolicy /usr/local/bin/secpoly```
+- ``` mkdir ~/{env1,env2,env3}```
+- ``` touch ~/{env1,env2,env3}/config.json```
+- fill out config files per env
+- use the symlink in relation to your current directory
+
+
 ### more
 - PRs are welcome!.
