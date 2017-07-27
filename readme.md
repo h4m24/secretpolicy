@@ -15,9 +15,11 @@ script will check if there are values at the destination path and will NOT overw
 ### to do
 - check for duplicate key names in secrets dict.
 - add checking against https certificates.
-- add option to skip writing policies.
-- add option to force overwrite secrets.
+- add option to skip/force  writing policies/secrets.
 - add flag to write policy file or do ```STDOUT```.
+- add dry-run mode.
+- check json input.
+
 
 
 ### Usage
@@ -32,3 +34,4 @@ script will check if there are values at the destination path and will NOT overw
 
 ### more
 - PRs are welcome!.
+- please check headers of the script for the shebang that contains python bin path.
