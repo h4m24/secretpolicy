@@ -4,6 +4,7 @@ import argparse
 import sys
 from functions import *
 import logging
+import pprint
 
 ConfigFilePath = './config.json'
 
@@ -21,6 +22,8 @@ def main():
                         help="set topic of secret , example: service_web OR team_developers", type=str)
     parser.add_argument('-s', nargs=1, action='store', dest='SecretsFilePath',
                         help="secrets.json file path", type=str)
+    parser.add_argument('-ttl', nargs=1, action='store', dest='tokenttl',
+                        help="time to leave for token", type=str)
     parser.add_argument('-l', nargs=1, action='store', dest='LogLevel',
                         choices=['DEBUG', 'INFO', 'WARN', 'ERROR', 'CRITICAL'],
                         help="log level DEBUG ERROR WARN CRITICAL", type=str)
@@ -53,6 +56,11 @@ def main():
                 secretspathlist.append(SecretDocument['path'])
         logging.info("writing policies")
         writepolicy(args.target, secretspathlist, vaultaddress, vaulttoken)
+        token = tokencreate(args.target, vaultaddress, vaulttoken, args.tokenttl[0])
+        #this is path where we will store token. it is tokenspath from config file + topicname
+        tokenpath = vaultconfig['tokenspath'] + args.target[0]
+        #writing token to this path
+        writetoken(token, tokenpath, vaultaddress, vaulttoken)
     else:
         print("please provide topic and secret file path ")
         sys.exit(2)
