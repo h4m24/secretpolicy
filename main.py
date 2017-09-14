@@ -4,7 +4,6 @@ import argparse
 import sys
 from functions import *
 import logging
-import pprint
 
 ConfigFilePath = './config.json'
 
