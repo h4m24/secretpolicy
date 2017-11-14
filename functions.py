@@ -1,6 +1,5 @@
 import hvac
 import json
-
 # read configuration from json file
 
 
@@ -61,3 +60,15 @@ def writepolicy(topicname, pathslist, vaultaddress, vaulttoken):
     with open(outputfile, 'r') as policyfile:
         client.set_policy(topicname[0], policyfile.read())
         print(client.get_policy(topicname[0]))
+
+# generate token for created policy
+def tokencreate(policyname, vaultaddress, vaulttoken, ttl):
+    client = hvac.Client(url = vaultaddress, token = vaulttoken, verify = False)
+    token = client.create_token(orphan = True, policies = policyname, ttl = ttl)
+    return token["auth"]
+
+
+# write generated token back to vault
+def writetoken(token, tokenpath, vaultaddress, vaulttoken):
+    client = hvac.Client(url = vaultaddress, token = vaulttoken, verify = False)
+    client.write(path = tokenpath, **token)
